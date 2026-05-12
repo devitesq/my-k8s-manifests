@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: music-uploader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: music-app
+  template:
+    metadata:
+      labels:
+        app: music-app
+    spec:
+      containers:
+      - name: python-app
+        # Gunakan tag 'latest' untuk sinkronisasi awal, 
+        # nantinya Jenkins akan mengupdate bagian ini secara otomatis.
+        image: devitesq/roblox-music-uploader:latest
+        ports:
+        - containerPort: 8000
+        # Jika aplikasi membutuhkan penyimpanan permanen nantinya, 
+        # di sinilah kita akan menambahkan volume.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: music-service
+spec:
+  type: NodePort
+  selector:
+    app: music-app
+  ports:
+    - port: 80
+      targetPort: 8000
+      nodePort: 30008
