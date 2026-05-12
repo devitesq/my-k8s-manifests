@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: music-uploader
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: music-app
