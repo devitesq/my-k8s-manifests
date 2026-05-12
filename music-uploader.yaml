@@ -16,7 +16,7 @@ spec:
       - name: python-app
         # Gunakan tag 'latest' untuk sinkronisasi awal, 
         # nantinya Jenkins akan mengupdate bagian ini secara otomatis.
-        image: devitesq/roblox-music-uploader:latest
+        image: devitesq/roblox-music-uploader:11
         ports:
         - containerPort: 8000
         # Jika aplikasi membutuhkan penyimpanan permanen nantinya, 
